@@ -4,6 +4,9 @@
 \usepackage{xcolor}
 \usepackage{graphicx}
 
+\usepackage{gvv-book}
+\usepackage{gvv}
+
 % Code listing style
 \lstset{
   basicstyle=\ttfamily\footnotesize,
@@ -33,26 +36,91 @@ In what ratio does the point $P(-4, y)$ divide the line segment joining
 $A(-6,10)$ and $B(3,-8)$? Hence, find the value of $y$.
 \end{frame}
 
-% Solution
-\begin{frame}{Solution}
-Using the section formula:
-\[
-x = \frac{mx_2 + nx_1}{m+n}, \quad 
-y = \frac{my_2 + ny_1}{m+n}
-\]
+% Solution using Rank Criterion (Slide 1)
+\begin{frame}{Solution: Using the Rank Criterion}
+\noindent
+We are given three points:
 
-Substitute $x = -4$, $A(-6,10)$, $B(3,-8)$:
+\begin{align}
+A = \myvec{-6 \\ 10}, \quad 
+P = \myvec{-4 \\ y}, \quad 
+B = \myvec{3 \\ -8}
+\end{align}
 
-\[
--4 = \frac{3m - 6n}{m+n} \implies m:n = 2:7
-\]
+\section*{Step 1: Using the rank condition for collinearity}
 
-\[
-y = \frac{2(-8) + 7(10)}{9} = 6
-\]
+The points \(A, P, B\) are collinear if
 
-\textbf{Answer:} Ratio $2:7$, and $y=6$.
+\begin{align}
+\text{rank}\big(\myvec{P-A & B-A}\big) = 1
+\end{align}
+
+Thus, the matrix is
+
+\begin{align}
+M = \myvec{2 & 9 \\ y-10 & -18}
+\end{align}
+
+Perform the row operation: $R_2 \leftarrow R_2 + 2R_1$  which results in
+
+\begin{align}
+\myvec{2 & 9 \\ y-6 & 0}
+\end{align}
+
+
 \end{frame}
+
+% Solution using Rank Criterion (Slide 2)
+\begin{frame}{Solution: Using the Criterion}
+For the rank to be 1, the second row must be all zeros:
+
+$
+y - 6 = 0 \quad \Rightarrow \quad y = 6
+$
+
+---
+
+\section*{Step 2: Finding \(k\)}
+
+Using the vector formula,
+
+\begin{align}
+k = \frac{(\vec{A} - \vec{P})^\top(\vec{P} - \vec{B})}{\|\vec{P} - \vec{B}\|^2}
+\end{align}
+
+Substitute $y = 6$:
+Compute the numerator:
+
+\begin{align}
+(\vec{A}-\vec{P})^\top (\vec{P}-\vec{B}) = (-2)(-7) + (4)(14) = 14 + 56 = 70
+\end{align}
+
+Compute the denominator:
+
+\begin{align}
+\|\vec{P}-\vec{B}\|^2 = (-7)^2 + (14)^2 = 49 + 196 = 245
+\end{align}
+
+\end{frame}
+
+% Solution using Rank Criterion (Slide 3)
+\begin{frame}{Solution: Final Result}
+Thus,
+
+\begin{align}
+k = \frac{70}{245} = \frac{2}{7}
+\end{align}
+
+---
+
+\section*{Final Answer:}
+
+\begin{align}
+\boxed{y = 6, \quad k = \frac{2}{7}}
+\end{align}  
+See the graphical representation in Figure 1.
+\end{frame}
+
 
 \begin{frame}{Resulting Graph}
 \centering
@@ -93,11 +161,12 @@ plt.title("Point P dividing AB in 2:7")
 plt.legend()
 plt.grid(True)
 plt.axis("equal")
+plt.savefig("fig.png")
 plt.show()
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{C Code (Shared Library – find_point.c)}
+\begin{frame}[fragile]{C Code (Shared Library – find point.c)}
 \begin{lstlisting}[language=C]
 #include <stdio.h>
 

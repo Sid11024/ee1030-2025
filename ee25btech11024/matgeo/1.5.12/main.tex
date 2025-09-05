@@ -28,31 +28,81 @@ In what ratio does the point $\vec{P}(-4, y)$ divide the line segment joining th
 
 \hr
 
+\noindent
 \section*{Solution:}
 
-\subsection*{1. Finding the Ratio}
-First, we determine the ratio $m:n$ using the section formula for the known x-coordinate. Let the points be represented by vectors $\vec{a}$, $\vec{b}$, and $\vec{p}$.
+\noindent
+We are given three points:
 
-Given the x-coordinates $p_x = -4$, $a_x = -6$, and $b_x = 3$:
-\begin{align*}
-    \vec{p} &= \frac{n\vec{a} + m\vec{b}}{m+n} \\
-            &= \frac{7 \myvec{-6 \\ 10} + 2 \myvec{3 \\ -8}}{2+7} \\
-            &= \frac{1}{9} \left( \myvec{-42 \\ 70} + \myvec{6 \\ -16} \right) \\
-            &= \frac{1}{9} \myvec{-36 \\ 54} \\
-            &= \myvec{-4 \\ 6}
-\end{align*}
-The ratio is $m:n = 2:7$.
+\begin{align}
+A = \myvec{-6 \\ 10}, \quad 
+P = \myvec{-4 \\ y}, \quad 
+B = \myvec{3 \\ -8}
+\end{align}
 
-\subsection*{2. Finding the Point Coordinates}
-Now, using the section formula in vector form with the ratio $2:7$, the desired point $\vec{p}$ is calculated as:
-\begin{align*}
-    \vec{p} &= \frac{n\vec{a} + m\vec{b}}{m+n} \\
-            &= \frac{7 \myvec{-6 \\ 10} + 2 \myvec{3 \\ -8}}{2+7} \\
-            &= \frac{1}{9} \left( \myvec{-42 \\ 70} + \myvec{6 \\ -16} \right) \\
-            &= \frac{1}{9} \myvec{-36 \\ 54} \\
-            &= \myvec{-4 \\ 6}
-\end{align*}
-The calculation confirms that the x-coordinate is $-4$ and the y-coordinate is $6$.
+\section*{Step 1: Using the rank condition for collinearity}
+
+The points \(A, P, B\) are collinear if
+
+\begin{align}
+\text{rank}\big(\myvec{P-A & B-A}\big) = 1
+\end{align}
+
+Thus, the matrix is
+
+\begin{align}
+M = \myvec{2 & 9 \\ y-10 & -18}
+\end{align}
+
+Perform the row operation: $R_2 \leftarrow R_2 + 2R_1$  which results in
+
+\begin{align}
+\myvec{2 & 9 \\ y-6 & 0}
+\end{align}
+
+For the rank to be 1, the second row must be all zeros:
+
+$
+y - 6 = 0 \quad \Rightarrow \quad y = 6
+$
+
+---
+
+\section*{Step 2: Finding \(k\)}
+
+Using the vector formula,
+
+\begin{align}
+k = \frac{(\vec{A} - \vec{P})^\top(\vec{P} - \vec{B})}{\|\vec{P} - \vec{B}\|^2}
+\end{align}
+
+Substitute $y = 6$:
+Compute the numerator:
+
+\begin{align}
+(\vec{A}-\vec{P})^\top (\vec{P}-\vec{B}) = (-2)(-7) + (4)(14) = 14 + 56 = 70
+\end{align}
+
+Compute the denominator:
+
+\begin{align}
+\|\vec{P}-\vec{B}\|^2 = (-7)^2 + (14)^2 = 49 + 196 = 245
+\end{align}
+
+Thus,
+
+\begin{align}
+k = \frac{70}{245} = \frac{2}{7}
+\end{align}
+
+---
+
+\section*{Final Answer:}
+
+\begin{align}
+\boxed{y = 6, \quad k = \frac{2}{7}}
+\end{align}
+
 
 See the graphical representation in Figure~\ref{fig:line_division}.
 
